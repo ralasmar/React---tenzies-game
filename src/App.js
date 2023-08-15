@@ -7,6 +7,7 @@ export default function App() {
   const [dice, setDice] = React.useState(allNewDice())
   const [tenzies, setTenzies] = React.useState(false)
 
+  //use effect watches to see if all dice are held and have the same value, if so it changes the state of tenzies to true
   React.useEffect(() => {
     //.every method will look for a specific condition, if every item is true for that condition it will return the value true
     const allHeld = dice.every(die => die.isHeld)
@@ -53,6 +54,7 @@ export default function App() {
     
   }
 
+  //toggles the isHeld property with the provided id
   function holdDice(id){
     setDice(oldDice => oldDice.map(die => {
       return die.id === id ? 
@@ -61,6 +63,7 @@ export default function App() {
     }))
   }
 
+  //dice are displayed 
   const diceElements = dice.map(die => <Die key={die.id} value={die.value} isHeld={die.isHeld} holdDice={()=>holdDice(die.id)} />)
 
     return (
